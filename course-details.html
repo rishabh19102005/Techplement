@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Bootcamp - EduTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'spin': 'spin 1s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            'from': { opacity: '0', transform: 'translateY(10px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        spin: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation (Same as other pages) -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-indigo-600">EduTech</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600">Home</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-indigo-600">Courses</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Instructors</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">About</a>
+                    <a href="login.html" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Sign In</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu hidden md:hidden">
+            <a href="index.html" class="block py-2 px-4 text-gray-700 hover:bg-indigo-50">Home</a>
+            <a href="courses.html" class="block py-2 px-4 text-gray-700 hover:bg-indigo-50">Courses</a>
+            <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-indigo-50">Instructors</a>
+            <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-indigo-50">About</a>
+            <a href="login.html" class="block py-2 px-4 text-gray-700 hover:bg-indigo-50">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <div class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/3">
+                    <h1 class="text-3xl font-bold mb-4">Web Development Bootcamp</h1>
+                    <p class="text-gray-600 mb-4">Learn web development from scratch with HTML, CSS, and JavaScript. Build modern, responsive websites and web applications.</p>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-yellow-400">★★★★★</span>
+                            <span class="text-gray-600 ml-2">4.8 (1,234 reviews)</span>
+                        </div>
+                        <span class="text-gray-600">•</span>
+                        <span class="text-gray-600">12,345 students enrolled</span>
+                        <span class="text-gray-600">•</span>
+                        <span class="text-gray-600">Last updated 2/2024</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img src="WDeveloper.png" alt="Instructor" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-semibold">Raghav Gupta</p>
+                            <p class="text-gray-600">Senior Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <img src="webdev.png" alt="Course thumbnail" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <div class="text-3xl font-bold text-indigo-600 mb-4">₹1999</div>
+                        <button id="enroll-button" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 mb-4">Enroll Now</button>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>12 hours of content</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Lifetime access</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Certificate of completion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Main Content -->
+            <div class="md:w-2/3">
+                <!-- What You'll Learn -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">What You'll Learn</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Build responsive websites using HTML5 and CSS3</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Create interactive web applications with JavaScript</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Implement modern web development practices</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Deploy websites to production servers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Content -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold mb-4">Course Content</h2>
+                    <div class="space-y-4">
+                        <div class="border rounded-lg">
+                            <div class="p-4 bg-gray-50">
+                                <h3 class="font-semibold">Module 1: HTML5 Fundamentals</h3>
+                            </div>
+                            <div class="p-4 border-t">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <span>Introduction to HTML5</span>
+                                    </div>
+                                    <span class="text-gray-600">15:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More modules... -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="md:w-1/3">
+                <!-- Course Features -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Course Features</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">Videos</span>
+                            <span class="font-semibold">12 hours</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">Articles</span>
+                            <span class="font-semibold">24</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">Downloadable Resources</span>
+                            <span class="font-semibold">15</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">Assignments</span>
+                            <span class="font-semibold">8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Requirements</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Basic computer knowledge</li>
+                        <li>No prior programming experience needed</li>
+                        <li>A computer with internet connection</li>
+                        <li>Dedication to learn and practice</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Same as other pages) -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">EduTech</h3>
+                    <p class="text-gray-400">Empowering learners worldwide with quality education.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="courses.html" class="text-gray-400 hover:text-white">Courses</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-l-md w-full focus:outline-none">
+                        <button class="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 EduTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Mobile menu toggle (existing code)
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Enroll Now button redirection
+        const enrollButton = document.getElementById('enroll-button');
+        if (enrollButton) {
+            enrollButton.addEventListener('click', () => {
+                window.location.href = 'payment.html';
+            });
+        }
+    </script>
+</body>
+</html> 

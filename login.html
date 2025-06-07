@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduTech</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--text-primary)',
+                        secondary: 'var(--text-secondary)',
+                    },
+                    backgroundColor: {
+                        primary: 'var(--bg-primary)',
+                        card: 'var(--card-bg)',
+                    },
+                    borderColor: {
+                        DEFAULT: 'var(--border-color)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            'from': { opacity: '0' },
+                            'to': { opacity: '1' },
+                        },
+                        slideUp: {
+                            'from': { transform: 'translateY(20px)', opacity: '0' },
+                            'to': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --border-color: #e5e7eb;
+            --nav-bg: #ffffff;
+            --card-bg: #ffffff;
+            --hover-bg: #f9fafb;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --border-color: #374151;
+            --nav-bg: #111827;
+            --card-bg: #1f2937;
+            --hover-bg: #374151;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --glass-bg: rgba(31, 41, 55, 0.1);
+            --glass-border: rgba(55, 65, 81, 0.2);
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .checkbox-wrapper {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-wrapper input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .checkbox-wrapper:hover input ~ .checkmark {
+            border-color: #6366f1;
+        }
+
+        .checkbox-wrapper input:checked ~ .checkmark {
+            background-color: #6366f1;
+            border-color: #6366f1;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-wrapper input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-wrapper .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Custom text colors */
+        .text-primary {
+            color: #FFFFFF;
+        }
+        
+        .text-secondary {
+            color: #FFFFFF;
+        }
+        
+        .text-accent {
+            color: #FFFFFF;
+        }
+        
+        .text-muted {
+            color: #FFFFFF;
+        }
+        
+        .link-hover:hover {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg">
+    <!-- Navigation -->
+    <nav class="nav-bg shadow-lg fixed w-full z-50 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-accent hover:text-primary transition-colors">EduTech</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="register.html" class="text-secondary hover:text-accent transition-colors">Don't have an account?</a>
+                    <a href="register.html" class="bg-white text-indigo-600 px-6 py-2 rounded-full hover:bg-gray-100 transition-all hover:scale-105">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 animate-fade-in">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+
+            <!-- Login Form -->
+            <div class="glass rounded-2xl p-8 shadow-2xl">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-accent mb-2">Welcome Back</h2>
+                    <p class="text-secondary text-base">Sign in to continue your learning journey</p>
+                </div>
+
+                <form class="mt-8 space-y-6">
+                    <div>
+                        <label for="email" class="block text-base font-medium text-primary">Email Address</label>
+                        <input id="email" name="email" type="email" required 
+                            class="mt-1 block w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-accent placeholder-muted focus:outline-none form-input text-base">
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-base font-medium text-primary">Password</label>
+                        <input id="password" name="password" type="password" required 
+                            class="mt-1 block w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-accent placeholder-muted focus:outline-none form-input text-base">
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="text-base text-secondary ml-2">Remember me</span>
+                            </label>
+                        </div>
+                        <div class="text-base">
+                            <a href="#" class="text-accent hover:text-primary link-hover">Forgot your password?</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" 
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform hover:scale-105 transition-all">
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Social Login -->
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-white/20"></div>
+                        </div>
+                        <div class="relative flex justify-center text-base">
+                            <span class="px-2 bg-transparent text-secondary">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button class="w-full inline-flex justify-center py-2 px-4 border border-white/20 rounded-lg shadow-sm bg-white/10 text-base font-medium text-secondary hover:bg-white/20 transition-colors">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+                            </svg>
+                            Google
+                        </button>
+                        <button class="w-full inline-flex justify-center py-2 px-4 border border-white/20 rounded-lg shadow-sm bg-white/10 text-base font-medium text-secondary hover:bg-white/20 transition-colors">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                            </svg>
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-90 z-50 hidden md:hidden flex-col items-center justify-center space-y-8 animate-fade-in">
+        <a href="index.html" class="text-white text-3xl font-bold hover:text-indigo-400 transition-colors">Home</a>
+        <a href="courses.html" class="text-white text-3xl font-bold hover:text-indigo-400 transition-colors">Courses</a>
+        <a href="instructors.html" class="text-white text-3xl font-bold hover:text-indigo-400 transition-colors">Instructors</a>
+        <a href="about.html" class="text-white text-3xl font-bold hover:text-indigo-400 transition-colors">About</a>
+        <button id="close-menu" class="absolute top-4 right-4 text-white text-5xl">&times;</button>
+    </div>
+
+    <script>
+        // Client-side validation for login form
+        const loginForm = document.querySelector('form');
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission by default
+
+            const email = loginForm.querySelector('#email');
+            const password = loginForm.querySelector('#password');
+
+            if (!email.value || !password.value) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            // Basic email format validation
+            if (!email.value.includes('@') || !email.value.includes('.')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            // Password length validation
+            if (password.value.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+
+            // If all validation passes, redirect to index.html
+            window.location.href = 'index.html';
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if(mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+        }
+
+        if(closeMenuButton) {
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+    </script>
+
+    <script src="assets/js/theme.js"></script>
+</body>
+</html> 

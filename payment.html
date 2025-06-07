@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - EduTech</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .text-primary {
+            color: #FFFFFF;
+        }
+        .text-secondary {
+            color: #FFFFFF;
+        }
+        .text-accent {
+            color: #FFFFFF;
+        }
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center gradient-bg p-4">
+
+    <!-- Payment Form Container -->
+    <div class="glass rounded-2xl p-8 shadow-2xl max-w-md w-full animate-fade-in">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-accent mb-2">Complete Your Payment</h2>
+            <p class="text-secondary text-base">Securely process your enrollment</p>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div class="mb-6 flex space-x-4">
+            <button type="button" id="card-tab" class="flex-1 py-2 px-4 rounded-lg text-center text-primary font-medium bg-white/10 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500">Card</button>
+            <button type="button" id="upi-tab" class="flex-1 py-2 px-4 rounded-lg text-center text-primary font-medium bg-white/10 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500">UPI</button>
+            <button type="button" id="netbanking-tab" class="flex-1 py-2 px-4 rounded-lg text-center text-primary font-medium bg-white/10 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500">Netbanking</button>
+        </div>
+
+        <!-- Payment Forms -->
+        <div id="payment-forms" class="space-y-6">
+            <!-- Card Payment Form -->
+            <form id="card-form" class="space-y-6">
+                <div>
+                    <label for="card-number" class="block text-base font-medium text-primary mb-1">Card Number</label>
+                    <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required
+                           class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base">
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="expiry-date" class="block text-base font-medium text-primary mb-1">Expiry Date</label>
+                        <input type="text" id="expiry-date" placeholder="MM/YY" required
+                               class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base">
+                    </div>
+                    <div>
+                        <label for="cvv" class="block text-base font-medium text-primary mb-1">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" required
+                               class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base">
+                    </div>
+                    <div class="col-span-1">
+                        <label for="zip-code" class="block text-base font-medium text-primary mb-1">Zip Code</label>
+                        <input type="text" id="zip-code" placeholder="90210" required
+                               class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="card-name" class="block text-base font-medium text-primary mb-1">Name on Card</label>
+                    <input type="text" id="card-name" placeholder="Your Name" required
+                           class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base">
+                </div>
+
+                <button type="submit"
+                        class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform hover:scale-105 transition-all">
+                    Pay Now (Card)
+                </button>
+            </form>
+
+            <!-- UPI Payment Form (hidden by default) -->
+            <form id="upi-form" class="space-y-6 hidden">
+                <div>
+                    <label for="upi-id" class="block text-base font-medium text-primary mb-1">UPI ID</label>
+                    <input type="text" id="upi-id" placeholder="yourname@bankupi" required
+                           class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base">
+                </div>
+                <button type="submit"
+                        class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform hover:scale-105 transition-all">
+                    Pay Now (UPI)
+                </button>
+            </form>
+
+            <!-- Netbanking Payment Form (hidden by default) -->
+            <form id="netbanking-form" class="space-y-6 hidden">
+                <div>
+                    <label for="bank-select" class="block text-base font-medium text-primary mb-1">Select Bank</label>
+                    <select id="bank-select" required
+                            class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-base bg-white/10">
+                        <option value="">Choose your bank</option>
+                        <option value="bank-a">Bank A</option>
+                        <option value="bank-b">Bank B</option>
+                        <option value="bank-c">Bank C</option>
+                    </select>
+                </div>
+                <button type="submit"
+                        class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform hover:scale-105 transition-all">
+                    Pay Now (Netbanking)
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const cardTab = document.getElementById('card-tab');
+        const upiTab = document.getElementById('upi-tab');
+        const netbankingTab = document.getElementById('netbanking-tab');
+
+        const cardForm = document.getElementById('card-form');
+        const upiForm = document.getElementById('upi-form');
+        const netbankingForm = document.getElementById('netbanking-form');
+
+        function showForm(formToShow) {
+            cardForm.classList.add('hidden');
+            upiForm.classList.add('hidden');
+            netbankingForm.classList.add('hidden');
+
+            formToShow.classList.remove('hidden');
+        }
+
+        cardTab.addEventListener('click', () => showForm(cardForm));
+        upiTab.addEventListener('click', () => showForm(upiForm));
+        netbankingTab.addEventListener('click', () => showForm(netbankingForm));
+
+        // Initial display
+        showForm(cardForm);
+
+        // Payment form submission logic
+        // This will now apply to all forms
+        function handlePaymentSubmit(event) {
+            event.preventDefault();
+
+            let isValid = true;
+            let message = 'Payment Successful!';
+
+            if (!event.target.id.includes('upi') && !event.target.id.includes('netbanking')) { // Card form validation
+                const cardNumber = document.getElementById('card-number').value;
+                const expiryDate = document.getElementById('expiry-date').value;
+                const cvv = document.getElementById('cvv').value;
+                const cardName = document.getElementById('card-name').value;
+
+                if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                    message = 'Please fill in all card details.';
+                    isValid = false;
+                }
+            } else if (event.target.id.includes('upi')) { // UPI form validation
+                const upiId = document.getElementById('upi-id').value;
+                if (!upiId) {
+                    message = 'Please enter your UPI ID.';
+                    isValid = false;
+                }
+            } else if (event.target.id.includes('netbanking')) { // Netbanking form validation
+                const bankSelect = document.getElementById('bank-select').value;
+                if (!bankSelect) {
+                    message = 'Please select a bank.';
+                    isValid = false;
+                }
+            }
+
+            alert(message);
+
+            if (isValid) {
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        }
+
+        cardForm.addEventListener('submit', handlePaymentSubmit);
+        upiForm.addEventListener('submit', handlePaymentSubmit);
+        netbankingForm.addEventListener('submit', handlePaymentSubmit);
+    </script>
+</body>
+</html> 
